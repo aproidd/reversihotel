@@ -1,0 +1,195 @@
+/* Home Page CSS for Hotel Reservation System */
+
+/* Hero Section */
+.hero {
+    height: 500px;
+    background-image: url('../assets/images/hero-background.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+    z-index: 1;
+    max-width: 800px;
+    padding: 0 var(--spacing-sm);
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: var(--spacing-sm);
+    color: white;
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: var(--spacing-md);
+}
+
+.hero .btn {
+    font-size: 18px;
+    padding: 12px 30px;
+}
+
+/* Room List */
+.room-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 var(--spacing-sm);
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+/* About Hotel Section */
+.about-hotel {
+    padding: 0 var(--spacing-sm);
+    margin-bottom: var(--spacing-xl);
+}
+
+.about-hotel h2 {
+    color: var(--dark-blue);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-md);
+}
+
+/* Featured Amenities */
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 var(--spacing-sm);
+    margin-bottom: var(--spacing-xl);
+}
+
+.feature {
+    flex: 1 1 calc(25% - var(--spacing-sm));
+    margin: var(--spacing-xs);
+    padding: var(--spacing-sm);
+    background-color: white;
+    border-radius: var(--border-radius-lg);
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    transition: transform var(--transition-speed);
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--box-shadow-hover);
+}
+
+.feature-icon {
+    font-size: 40px;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.feature h3 {
+    margin-bottom: var(--spacing-xs);
+}
+
+/* Testimonials */
+.testimonials {
+    background-color: var(--dark-blue);
+    color: white;
+    padding: var(--spacing-xl) 0;
+    margin-bottom: var(--spacing-xl);
+}
+
+.testimonials h2 {
+    color: white;
+}
+
+.testimonial-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-md);
+    padding: 0 var(--spacing-sm);
+}
+
+.testimonial {
+    flex: 1 1 300px;
+    max-width: 400px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-lg);
+    margin-bottom: var(--spacing-sm);
+}
+
+.testimonial-text {
+    font-style: italic;
+    margin-bottom: var(--spacing-sm);
+}
+
+.testimonial-author {
+    font-weight: bold;
+    text-align: right;
+}
+
+/* CTA Section */
+.cta-section {
+    text-align: center;
+    padding: var(--spacing-xl) var(--spacing-sm);
+    background-color: var(--light-gray);
+    margin-bottom: var(--spacing-xl);
+}
+
+.cta-section h2 {
+    margin-bottom: var(--spacing-md);
+}
+
+.cta-section p {
+    max-width: 800px;
+    margin: 0 auto var(--spacing-md);
+}
+
+.cta-section .btn {
+    padding: 12px 30px;
+    font-size: 18px;
+}
+
+/* Responsive Styles */
+@media (max-width: var(--breakpoint-lg)) {
+    .feature {
+        flex: 1 1 calc(50% - var(--spacing-sm));
+    }
+}
+
+@media (max-width: var(--breakpoint-md)) {
+    .hero h1 {
+        font-size: 36px;
+    }
+    
+    .hero p {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: var(--breakpoint-sm)) {
+    .hero {
+        height: 400px;
+    }
+    
+    .hero h1 {
+        font-size: 28px;
+    }
+    
+    .feature {
+        flex: 1 1 100%;
+    }
+}
