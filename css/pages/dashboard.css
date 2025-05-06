@@ -1,0 +1,210 @@
+/* Dashboard CSS File for Hotel Reservation System */
+
+.dashboard-container {
+    padding: 20px;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.dashboard-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    flex: 1;
+    min-width: 200px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card h3 {
+    margin-top: 0;
+    color: #3498db;
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.stat-card.pending .stat-value {
+    color: #f39c12;
+}
+
+.stat-card.confirmed .stat-value {
+    color: #3498db;
+}
+
+.stat-card.checked-in .stat-value {
+    color: #2ecc71;
+}
+
+.stat-card.rooms .stat-value {
+    color: #9b59b6;
+}
+
+.reservation-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-table th, .reservation-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.reservation-table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.reservation-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+.reservation-table tr:last-child td {
+    border-bottom: none;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.welcome-user {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.user-info {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.user-info i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+    color: #3498db;
+}
+
+.dashboard-filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.filter-item {
+    flex: 1;
+    min-width: 200px;
+}
+
+.dashboard-tabs {
+    display: flex;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.dashboard-tab {
+    padding: 12px 20px;
+    cursor: pointer;
+    flex: 1;
+    text-align: center;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s;
+}
+
+.dashboard-tab.active {
+    background-color: #3498db;
+    color: white;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.chart-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.chart-container h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+@media screen and (max-width: 992px) {
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .dashboard-header div {
+        margin-top: 10px;
+    }
+    
+    .stat-card {
+        min-width: calc(50% - 10px);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .stat-card {
+        min-width: 100%;
+    }
+    
+    .welcome-user {
+        flex-direction: column;
+    }
+    
+    .welcome-user div:last-child {
+        margin-top: 10px;
+    }
+    
+    .reservation-table {
+        display: block;
+        overflow-x: auto;
+    }
+}
