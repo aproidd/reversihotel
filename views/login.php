@@ -1,86 +1,62 @@
 <?php
-session_start();
-require '../koneksi.php';
+/**
+ * Login page for Hotel Reservation System
+ */
+$pageTitle = "Login";
+require_once '../includes/config.php';
+require_once '../includes/functions.php';
+require_once '../includes/auth.php';
 
-// Cek apakah sudah login, jika ya redirect ke dashboard
-if (isset($_SESSION['login'])) {
-    header("Location: dashboard.php");
-    exit;
+// Check if user is already logged in
+if (isset($_SESSION['user_id'])) {
+    redirect(SITE_URL . '/index.php');
 }
 
-// Proses login
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
-    $password = $_POST['password'];
-    
-    // Cek username
-    $query = mysqli_query($conn, "SELECT * FROM users WHERE username = '$username'");
-    
-    if (mysqli_num_rows($query) == 1) {
-        $row = mysqli_fetch_assoc($query);
-        
-        // Verifikasi password
-        if (password_verify($password, $row['password'])) {
-            // Set session
-            $_SESSION['login'] = true;
-            $_SESSION['user_id'] = $row['id'];
-            $_SESSION['username'] = $row['username'];
-            $_SESSION['nama_lengkap'] = $row['nama_lengkap'];
-            $_SESSION['role'] = $row['role'];
-            
-            // Redirect ke dashboard
-            header("Location: dashboard.php");
-            exit;
-        } else {
-            $error = "Password yang Anda masukkan salah!";
-        }
-    } else {
-        $error = "Username tidak ditemukan!";
-    }
+// Set error message if exists in session
+$errorMsg = '';
+if (isset($_SESSION['login_error'])) {
+    $errorMsg = $_SESSION['login_error'];
+    unset($_SESSION['login_error']);
 }
+
+// Include header
+include_once '../components/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Hotel Reservation System</title>
-    <link rel="stylesheet" href="../css/style.css">
-</head>
-<body>
-    <div class="container">
+
+<div class="login-container">
+    <div class="login-form-container">
+        <h1>Login to <?php echo SITE_NAME; ?></h1>
         
-        <div class="login-container">
-            <div class="login-logo">
-                <h2>Admin Login</h2>
-                <p>Masuk ke Dashboard Admin</p>
+        <?php if (!empty($errorMsg)): ?>
+            <div class="alert alert-danger">
+                <?php echo $errorMsg; ?>
             </div>
-            
-            <?php if (isset($error)): ?>
-            <div class="alert">
-                <?= $error ?>
-            </div>
-            <?php endif; ?>
-            
-            <div class="login-form">
-                <form action="" method="post">
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" id="username" name="username" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required>
-                    </div>
-                    <button type="submit" class="login-btn">Login</button>
-                </form>
-            </div>
-            
-            <div class="back-link">
-                <a href="../index.php">Kembali ke Halaman Utama</a>
-            </div>
-        </div>
+        <?php endif; ?>
         
+        <form action="../proses/proses_login.php" method="post" class="login-form">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+            
+            <div class="form-links">
+                <p>Don't have an account? <a href="register.php">Register</a></p>
+                <p><a href="forgot_password.php">Forgot Password?</a></p>
+            </div>
+        </form>
     </div>
-</body>
-</html>
+</div>
+
+<?php
+// Include footer
+include_once '../components/footer.php';
+?>
